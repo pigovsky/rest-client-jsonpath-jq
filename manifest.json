@@ -1,12 +1,17 @@
 {
 	"name": "REST client with jsonpath and jq",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "A chrome extension implementing a REST client with jsonpath and jq",
-	"permissions": ["storage", "tabs"],
+	"permissions": [
+		"storage", 
+		"tabs",
+		"http://*/",
+		"https://*/"
+	],
 	"browser_action": {},
 	"background": {
 		"scripts": [
-			"src/js/com/github/pigovsky/rest_client_jsonpath_jq/main.js"
+			"src/main/js/com/github/pigovsky/rest_client_jsonpath_jq/main.js"
 		],
 		"persistent": false
 	},
