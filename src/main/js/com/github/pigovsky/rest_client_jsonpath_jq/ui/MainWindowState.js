@@ -21,7 +21,7 @@ let MainWindowState = {
 		RequestStorage.saveRequest({
 			methodAndUrl: this.getUiField("requestMethodAndUrl"),
 			headers: this.getUiField("requestHeaders"),
-			requestBody: this.getUiField("requestBody")
+			body: this.getUiField("requestBody")
 		});
 	}
 };
