@@ -1,7 +1,8 @@
 let MainWindowState = {
 	currentHistoricalRequest: 0,
 	showHistoricalRequest: function() {
-		RequestStorage.getRequest(this.currentHistoricalRequest, (request) => {
+		RequestStorage.getRequest(this.currentHistoricalRequest, (request, newIndex) => {
+			this.currentHistoricalRequest = newIndex;
 			if (request != null) {
 				let keyValues={                 
 					"requestMethodAndUrl": request.methodAndUrl,
@@ -23,6 +24,14 @@ let MainWindowState = {
 			headers: this.getUiField("requestHeaders"),
 			body: this.getUiField("requestBody")
 		});
+	},
+	historyUp: function() {
+		this.currentHistoricalRequest++;
+		this.showHistoricalRequest();
+	},
+	historyDown: function() {
+		this.currentHistoricalRequest--;
+		this.showHistoricalRequest();
 	}
 };
 

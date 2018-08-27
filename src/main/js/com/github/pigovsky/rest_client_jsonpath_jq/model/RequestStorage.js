@@ -13,10 +13,12 @@ let RequestStorage = {
 	getRequest: function(index, onData) {
 		chrome.storage.sync.get("global", (data) => {
 			console.log("geting request from history " + JSON.stringify(data));
-			if (index < 0 || index >= data.global.requestHistory.length) {
-				onData(null);
+			if (data.global.requestHistory.length == 0) {
+				onData(null, 0);
 			} else {
-				onData(data.global.requestHistory[index]);
+				let newIndex = index < 0 ? data.global.requestHistory.length-1 :
+					index >= data.global.requestHistory.length ? 0 : index;
+				onData(data.global.requestHistory[newIndex], newIndex);
 			}
 		});
 	}
