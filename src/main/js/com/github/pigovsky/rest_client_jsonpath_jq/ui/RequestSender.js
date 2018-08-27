@@ -1,5 +1,6 @@
 let RequestSender = {
 	send: () => {
+		MainWindowState.saveRequest();
 		let methodAndUrl = document.getElementById("requestMethodAndUrl").value.split(/\s+/);
 		let method = methodAndUrl[0];
 		let url = methodAndUrl[1];

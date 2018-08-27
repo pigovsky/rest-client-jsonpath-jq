@@ -1,6 +1,6 @@
 {
 	"name": "REST client with jsonpath and jq",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"description": "A chrome extension implementing a REST client with jsonpath and jq",
 	"permissions": [
 		"storage", 

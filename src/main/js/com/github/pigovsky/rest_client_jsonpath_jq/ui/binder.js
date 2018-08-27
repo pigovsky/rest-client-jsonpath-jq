@@ -3,3 +3,5 @@ document.getElementById("sendRequest").onclick = (element) => {
 	RequestSender.send();                 
 };
 
+MainWindowState.showHistoricalRequest();
+

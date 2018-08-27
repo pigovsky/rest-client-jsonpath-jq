@@ -11,13 +11,14 @@ let config = {
 					header: {"Authorization": "Bearer 123"}
 				}
 			]
-		}
+		},
+		requestHistory: []
 	}
 };
 
 chrome.runtime.onInstalled.addListener(() => {
 	chrome.storage.sync.set(config, () => {
-		console.log("Config was saved");
+		console.log("Config was saved " + JSON.stringify(config));
 	});
 });
 
