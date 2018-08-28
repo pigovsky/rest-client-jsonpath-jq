@@ -14,5 +14,9 @@ Object.keys(eventHandlers).forEach( (id) => {
 	};
 });
 
+document.getElementById("jsonPathQuery").onchange = (element) => {
+	MainWindowState.handleJsonPathQuery();
+};
+
 MainWindowState.showHistoricalRequest();
 

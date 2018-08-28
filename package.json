@@ -1,0 +1,34 @@
+{
+  "name": "rest-client-jsonpath-jq",
+  "version": "0.4.0",
+  "description": "A chrome extension implementing a REST client with jsonpath and jq",
+  "keywords": [
+    "rest",
+    "jsonpath",
+    "jq",
+    "chrome",
+    "extension",
+    "addon"
+  ],
+  "author": "Yuriy Pigovsky",
+  "main": "src",
+  "repository": "pigovsky/rest-client-jsonpath-jq",
+  "scripts": {
+    "test": "mocha --reporter spec --timeout 5000"
+  },
+  "dependencies": {
+    "jsonpath": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "object-assign": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=4",
+    "npm": ">=1.3"
+  },
+  "license": "GNU",
+  "files": [
+    "src"
+  ]
+}

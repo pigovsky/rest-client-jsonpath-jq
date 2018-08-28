@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title> Rest client with jsonpath and jq </title>
+	<script type="module" src="../../../../node_modules/jsonpath/jsonpath.min.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/requesters/HttpRequester.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/model/HeaderFetcher.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/ui/MainWindowState.js"></script>
@@ -22,6 +23,9 @@
 	<button id="historyDown">&darr;</button>
 	<p></p>
 	<textarea id="responseBody"></textarea>
+
+	<p>jsonpath<textarea id="jsonPathQuery"></textarea></p>
+	<textarea id="jsonPathResult"></textarea>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/ui/binder.js"></script>
 </body>
 </html>

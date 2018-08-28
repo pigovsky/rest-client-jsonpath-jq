@@ -1,3 +1,4 @@
+
 let MainWindowState = {
 	currentHistoricalRequest: 0,
 	showHistoricalRequest: function() {
@@ -18,6 +19,9 @@ let MainWindowState = {
 	getUiField: function(id) {
 		return document.getElementById(id).value;
 	},
+	setUiField: function(id, value) {
+		document.getElementById(id).value = value;
+	},
 	saveRequest: function() {
 		RequestStorage.saveRequest({
 			methodAndUrl: this.getUiField("requestMethodAndUrl"),
@@ -32,6 +36,13 @@ let MainWindowState = {
 	historyDown: function() {
 		this.currentHistoricalRequest--;
 		this.showHistoricalRequest();
+	},
+	handleJsonPathQuery: function() {
+		let query = this.getUiField("jsonPathQuery");
+		let body = JSON.parse(this.getUiField("responseBody"));
+		let result = jsonpath.query(body, query);
+		let textResult = JSON.stringify(result, null, 2);
+		this.setUiField("jsonPathResult", textResult);
 	}
 };
 
