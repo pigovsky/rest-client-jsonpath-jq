@@ -2,7 +2,7 @@
 let MainWindowState = {
 	currentHistoricalRequest: 0,
 	showHistoricalRequest: function() {
-		RequestStorage.getRequest(this.currentHistoricalRequest, (request, newIndex) => {
+		RequestDao.getRequest(this.currentHistoricalRequest, (request, newIndex) => {
 			this.currentHistoricalRequest = newIndex;
 			if (request != null) {
 				let keyValues={                 
@@ -23,7 +23,7 @@ let MainWindowState = {
 		document.getElementById(id).value = value;
 	},
 	saveRequest: function() {
-		RequestStorage.saveRequest({
+		RequestDao.saveRequest({
 			methodAndUrl: this.getUiField("requestMethodAndUrl"),
 			headers: this.getUiField("requestHeaders"),
 			body: this.getUiField("requestBody")
