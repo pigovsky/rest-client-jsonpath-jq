@@ -18,5 +18,6 @@ document.getElementById("jsonPathQuery").onchange = (element) => {
 	MainWindowState.handleJsonPathQuery();
 };
 
+MainWindowState.init();
 MainWindowState.showHistoricalRequest();
 

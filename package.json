@@ -17,6 +17,7 @@
     "test": "mocha --reporter spec --timeout 5000"
   },
   "dependencies": {
+    "jsoneditor": "*",
     "jsonpath": "*"
   },
   "devDependencies": {

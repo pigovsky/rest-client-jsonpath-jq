@@ -10,6 +10,7 @@ let RequestSender = {
 			let responseBody = document.getElementById("responseBody");
 			new HttpRequester().sendRequest(method, url, headers, requestBody, (responseText) => {
 				responseBody.value = responseText;
+				MainWindowState.responseJsonEditor.set(JSON.parse(responseText));
 			});
 		});
 	}

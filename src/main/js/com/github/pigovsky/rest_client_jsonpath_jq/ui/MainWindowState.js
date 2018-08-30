@@ -1,6 +1,12 @@
 
 let MainWindowState = {
+	responseJsonEditor: null,
 	currentHistoricalRequest: 0,
+	init: function() {
+		var container = document.getElementById("responseJsonEditor");         
+		var options = {};
+		this.responseJsonEditor = new JSONEditor(container, options);
+	},
 	showHistoricalRequest: function() {
 		RequestDao.getRequest(this.currentHistoricalRequest, (request, newIndex) => {
 			this.currentHistoricalRequest = newIndex;
