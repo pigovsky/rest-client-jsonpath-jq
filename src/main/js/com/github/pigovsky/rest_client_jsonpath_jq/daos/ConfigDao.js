@@ -22,7 +22,7 @@ let ConfigDao = {
 			this.read(data => {
 				console.log("Found config of version " + data.global.version);
 				if (VersionUtils.areMajorCompatible(data.global.version, this.initialConfig.global.version)) {
-					console.log("Current config v" + data.global.version + " is compatible with v" + this.initialConfig.gloabl.version);
+					console.log("Current config v" + data.global.version + " is compatible with v" + this.initialConfig.global.version);
 				} else {
 					console.log("Save config v" + this.initialConfig.global.version + " anew");
 					this.save(this.initialConfig);
