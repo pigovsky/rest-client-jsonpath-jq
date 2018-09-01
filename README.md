@@ -11,7 +11,7 @@ independence on jvm (which is inavailable in some user environments).
 
 I am open to receive any feature requests and PRs )))
 
-# Currecnt features
+# Current features
 
 * send a http request with specified method, headers and body
 * save the request into request history
