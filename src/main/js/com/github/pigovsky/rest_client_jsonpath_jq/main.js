@@ -1,25 +1,5 @@
-let config = {
-	global: {
-		headers: {
-			unconditional: {
-				"Accept": "application/json",
-				"Content-Type": "application/json"
-			},
-			conditional: [
-				{
-					condition: "host: 1.2.3.4",
-					header: {"Authorization": "Bearer 123"}
-				}
-			]
-		},
-		requestHistory: []
-	}
-};
-
 chrome.runtime.onInstalled.addListener(() => {
-	chrome.storage.sync.set(config, () => {
-		console.log("Config was saved " + JSON.stringify(config));
-	});
+	ConfigDao.init();
 });
 
 chrome.browserAction.onClicked.addListener((tab) => {

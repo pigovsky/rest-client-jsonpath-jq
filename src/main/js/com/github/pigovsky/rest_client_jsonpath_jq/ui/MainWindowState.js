@@ -1,8 +1,14 @@
 
 let MainWindowState = {
+	responseJsonEditor: null,
 	currentHistoricalRequest: 0,
+	init: function() {
+		var container = document.getElementById("responseJsonEditor");         
+		var options = {};
+		this.responseJsonEditor = new JSONEditor(container, options);
+	},
 	showHistoricalRequest: function() {
-		RequestStorage.getRequest(this.currentHistoricalRequest, (request, newIndex) => {
+		RequestDao.getRequest(this.currentHistoricalRequest, (request, newIndex) => {
 			this.currentHistoricalRequest = newIndex;
 			if (request != null) {
 				let keyValues={                 
@@ -23,7 +29,7 @@ let MainWindowState = {
 		document.getElementById(id).value = value;
 	},
 	saveRequest: function() {
-		RequestStorage.saveRequest({
+		RequestDao.saveRequest({
 			methodAndUrl: this.getUiField("requestMethodAndUrl"),
 			headers: this.getUiField("requestHeaders"),
 			body: this.getUiField("requestBody")
@@ -36,6 +42,10 @@ let MainWindowState = {
 	historyDown: function() {
 		this.currentHistoricalRequest--;
 		this.showHistoricalRequest();
+	},
+	updateJsonEditor: function() {	
+		let body = JSON.parse(this.getUiField("responseBody"));
+		this.responseJsonEditor.set(body);
 	},
 	handleJsonPathQuery: function() {
 		let query = this.getUiField("jsonPathQuery");

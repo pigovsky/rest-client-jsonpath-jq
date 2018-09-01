@@ -1,11 +1,16 @@
 <html>
 <head>
 	<title> Rest client with jsonpath and jq </title>
+	<link href="main.css" rel="stylesheet" type="text/css">
+	<link href="../../../../node_modules/jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+	<script src="../../../../node_modules/jsoneditor/dist/jsoneditor.min.js"></script>
 	<script type="module" src="../../../../node_modules/jsonpath/jsonpath.min.js"></script>
+	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/utils/VersionUtils.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/requesters/HttpRequester.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/model/HeaderFetcher.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/ui/MainWindowState.js"></script>
-	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/model/RequestStorage.js"></script>
+	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/daos/ConfigDao.js"></script>
+	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/daos/RequestDao.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/ui/RequestSender.js"></script>
 </head>
 <body>
@@ -22,9 +27,15 @@
 	<button id="historyUp">&uarr;</button> 
 	<button id="historyDown">&darr;</button>
 	<p></p>
-	<textarea id="responseBody"></textarea>
+	<div class='parent inline-flex-parent'>   
+		<div class='child'>
+			<textarea id="responseBody"></textarea>
+		</div>
+		<button id="updateJsonEditor">&rarr;</button>
+		<div id="responseJsonEditor" style="width: 400px; height: 400px;"></div>
+	</div>
 
-	<p>jsonpath<textarea id="jsonPathQuery"></textarea></p>
+	<p><textarea id="jsonPathQuery"></textarea> <button id="updateJsonPath">jsonpath</button></p>
 	<textarea id="jsonPathResult"></textarea>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/ui/binder.js"></script>
 </body>
