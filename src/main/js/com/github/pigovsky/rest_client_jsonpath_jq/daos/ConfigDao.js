@@ -13,11 +13,25 @@ let ConfigDao = {
 					}
 				]
 			},
-			requestHistory: []
+			requestHistory: [],
+			version: "0.1.0"
 		}
 	},
 	init: function() {
-		this.save(this.initialConfig);
+		try {
+			this.read(data => {
+				console.log("Found config of version " + data.global.version);
+				if (VersionUtils.areMajorCompatible(data.global.version, this.initialConfig.global.version)) {
+					console.log("Current config v" + data.global.version + " is compatible with v" + this.initialConfig.gloabl.version);
+				} else {
+					console.log("Save config v" + this.initialConfig.global.version + " anew");
+					this.save(this.initialConfig);
+				}
+			});
+		} catch (err) {
+			console.log("Cannot read old config " + err + ". Saving new one");
+			this.save(this.initialConfig);
+		}
 	},
 	save: function(data) {
 		chrome.storage.local.set(data, () => {
