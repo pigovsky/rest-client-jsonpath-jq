@@ -43,6 +43,10 @@ let MainWindowState = {
 		this.currentHistoricalRequest--;
 		this.showHistoricalRequest();
 	},
+	updateJsonEditor: function() {	
+		let body = JSON.parse(this.getUiField("responseBody"));
+		this.responseJsonEditor.set(body);
+	},
 	handleJsonPathQuery: function() {
 		let query = this.getUiField("jsonPathQuery");
 		let body = JSON.parse(this.getUiField("responseBody"));

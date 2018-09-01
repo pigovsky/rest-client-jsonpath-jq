@@ -4,7 +4,9 @@ let eventHandlers = {
 		RequestSender.send();  
 	},
 	"historyUp": () => { MainWindowState.historyUp() },
-	"historyDown": () => { MainWindowState.historyDown() }
+	"historyDown": () => { MainWindowState.historyDown() },
+	"updateJsonEditor": () => { MainWindowState.updateJsonEditor(); },
+	"updateJsonPath": () => { MainWindowState.handleJsonPathQuery(); }
 };
 
 Object.keys(eventHandlers).forEach( (id) => {
@@ -13,10 +15,6 @@ Object.keys(eventHandlers).forEach( (id) => {
 		handler();
 	};
 });
-
-document.getElementById("jsonPathQuery").onchange = (element) => {
-	MainWindowState.handleJsonPathQuery();
-};
 
 MainWindowState.init();
 MainWindowState.showHistoricalRequest();
