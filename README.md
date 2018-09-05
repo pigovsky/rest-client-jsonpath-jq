@@ -23,6 +23,7 @@ I am open to receive any feature requests and PRs )))
 # Future features
 
 * fix bug with config on fresh installation
+* a request progress indicator like "Loading..."
 * button to pretty-format response
 * copy the response to the clipboard
 * download the response as a file
