@@ -20,8 +20,9 @@ let ConfigDao = {
 	init: function() {
 		try {
 			this.read(data => {
-				console.log("Found config of version " + data.global.version);
-				if (VersionUtils.areMajorCompatible(data.global.version, this.initialConfig.global.version)) {
+				if (data != null && 
+					data.global != null && 
+					VersionUtils.areMajorCompatible(data.global.version, this.initialConfig.global.version)) {
 					console.log("Current config v" + data.global.version + " is compatible with v" + this.initialConfig.global.version);
 				} else {
 					console.log("Save config v" + this.initialConfig.global.version + " anew");
@@ -47,5 +48,9 @@ let ConfigDao = {
 			this.save(updatedData);
 		});
 	}
+};
+
+module.exports = {
+	ConfigDao
 };
 

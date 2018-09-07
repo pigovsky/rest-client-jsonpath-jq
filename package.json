@@ -14,7 +14,7 @@
   "main": "src",
   "repository": "pigovsky/rest-client-jsonpath-jq",
   "scripts": {
-    "test": "mocha --reporter spec --timeout 5000"
+    "test": "mocha src/test"
   },
   "dependencies": {
     "jsoneditor": "*",

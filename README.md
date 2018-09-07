@@ -22,6 +22,12 @@ I am open to receive any feature requests and PRs )))
 
 # Future features
 
+* a request progress indicator like "Loading..."
+* button to pretty-format response
+* copy the response to the clipboard
+* download the response as a file
+* add a jsoneditor for the jsonpath result text area
+* search historical request by a text pattern
 * query a response with jq
 * add a settings page configuring conditional and unconditional headers
 * ability to receive service addresses from Consul and Marathon
