@@ -22,17 +22,35 @@ let MainWindowState = {
 			}
 		});
 	},
+	showProgress: function() {
+		this.setResponseBody("Request in progress...");
+	},
+	hideProgress: function() {
+
+	},
 	getUiField: function(id) {
 		return document.getElementById(id).value;
 	},
 	setUiField: function(id, value) {
 		document.getElementById(id).value = value;
 	},
+	getRequestMethodAndUrl: function() {
+		return this.getUiField("requestMethodAndUrl");
+	},
+	getResponseBody: function() {
+		return this.getUiField("responseBody");
+	},
+	setResponseBody: function(text) {
+		return this.setUiField("responseBody", text);
+	},
+	getRequestBody: function() {
+		return this.getUiField("requestBody");
+	},
 	saveRequest: function() {
 		RequestDao.saveRequest({
 			methodAndUrl: this.getUiField("requestMethodAndUrl"),
 			headers: this.getUiField("requestHeaders"),
-			body: this.getUiField("requestBody")
+			body: this.getRequestBody() 
 		});
 	},
 	historyUp: function() {
@@ -44,12 +62,12 @@ let MainWindowState = {
 		this.showHistoricalRequest();
 	},
 	updateJsonEditor: function() {	
-		let body = JSON.parse(this.getUiField("responseBody"));
+		let body = JSON.parse(this.getResponseBody());
 		this.responseJsonEditor.set(body);
 	},
 	handleJsonPathQuery: function() {
 		let query = this.getUiField("jsonPathQuery");
-		let body = JSON.parse(this.getUiField("responseBody"));
+		let body = JSON.parse(this.getResponseBody());
 		let result = jsonpath.query(body, query);
 		let textResult = JSON.stringify(result, null, 2);
 		this.setUiField("jsonPathResult", textResult);

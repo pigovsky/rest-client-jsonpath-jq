@@ -1,18 +1,23 @@
 let RequestSender = {
 	send: () => {
 		MainWindowState.saveRequest();
-		let methodAndUrl = document.getElementById("requestMethodAndUrl").value.split(/\s+/);
+		let methodAndUrl = MainWindowState.getRequestMethodAndUrl().split(/\s+/);
 		let method = methodAndUrl[0];
 		let url = methodAndUrl[1];
 
 		HeaderFetcher.headers(url, (headers) => {
-			let requestBody = document.getElementById("requestBody").value;
-			let responseBody = document.getElementById("responseBody");
+			MainWindowState.showProgress();
+			let requestBody = MainWindowState.getRequestBody();
 			new HttpRequester().sendRequest(method, url, headers, requestBody, (responseText) => {
-				responseBody.value = responseText;
+				MainWindowState.setResponseBody(responseText);
 				MainWindowState.responseJsonEditor.set(JSON.parse(responseText));
+				MainWindowState.hideProgress();
 			});
 		});
 	}
+};
+
+module.exports = {
+	RequestSender
 };
 

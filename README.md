@@ -19,10 +19,10 @@ I am open to receive any feature requests and PRs )))
 * inspect response as a text and as a json in jsoneditor
 * modify the response body and view the updated version in the jsoneditor
 * query the response with jsonpath and inspect the result in a separate text area
+* a request progress indicator like "Request in progress..."
 
 # Future features
 
-* a request progress indicator like "Loading..."
 * button to pretty-format response
 * copy the response to the clipboard
 * download the response as a file
