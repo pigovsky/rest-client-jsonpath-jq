@@ -1,17 +1,11 @@
 var assert = require("assert");
-let mockito = require("mocket");
-let context = new mockito.Mocket();
+let mockito = require("testdouble");
 
-let MainWindowState = context.createMock();
-global.MainWindowState = MainWindowState;
-MainWindowState.expects("saveRequest");
-MainWindowState.expects("getRequestMethodAndUrl").returning("get /api/something");
-MainWindowState.expects("getRequestBody");
-MainWindowState.expects("setResponseBody");
-MainWindowState.expects("showProgress");
-MainWindowState.expects("hideProgress");
-MainWindowState.responseJsonEditor = context.createMock();
-MainWindowState.responseJsonEditor.expects("set");
+global.MainWindowState = mockito.replace(
+	"../main/js/com/github/pigovsky/rest_client_jsonpath_jq/ui/MainWindowState.js"
+).MainWindowState;
+mockito.when(MainWindowState.getRequestMethodAndUrl()).thenReturn("get /api/something");
+MainWindowState.responseJsonEditor = mockito.object({set: () => {}});
 global.HeaderFetcher = {
 	headers: (url, f) => {f()}
 };
@@ -26,7 +20,8 @@ describe('RequestSender', function(){
 	describe('#send', function(){     
 		it('should show and hide request progress', function(done) {
 			RequestSender.send();
-			context.assertMocks();
+			mockito.verify(MainWindowState.showProgress());
+			mockito.verify(MainWindowState.hideProgress());
 			done();
 		})   
 	}) 

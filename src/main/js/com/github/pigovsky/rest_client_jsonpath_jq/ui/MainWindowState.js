@@ -74,3 +74,7 @@ let MainWindowState = {
 	}
 };
 
+module.exports = {
+	MainWindowState
+};
+

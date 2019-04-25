@@ -18,11 +18,11 @@
   },
   "dependencies": {
     "jsoneditor": "*",
-    "jsonpath": "*"
+    "jsonpath": "^1.0.1"
   },
   "devDependencies": {
     "mocha": "*",
-    "mocket": "*",
+    "testdouble": "*",
     "object-assign": "^4.1.0"
   },
   "engines": {
