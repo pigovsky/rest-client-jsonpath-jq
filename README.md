@@ -20,12 +20,12 @@ I am open to receive any feature requests and PRs )))
 * modify the response body and view the updated version in the jsoneditor
 * query the response with jsonpath and inspect the result in a separate text area
 * a request progress indicator like "Request in progress..."
+* download the response as a file
 
 # Future features
 
 * button to pretty-format response
 * copy the response to the clipboard
-* download the response as a file
 * add a jsoneditor for the jsonpath result text area
 * search historical request by a text pattern
 * query a response with jq
