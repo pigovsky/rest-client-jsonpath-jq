@@ -41,6 +41,9 @@ let MainWindowState = {
 		return this.getUiField("responseBody");
 	},
 	setResponseBody: function(text) {
+		const element = document.getElementById("downloadResponse");
+		element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));
+  		element.setAttribute('download', this.getRequestMethodAndUrl());
 		return this.setUiField("responseBody", text);
 	},
 	getRequestBody: function() {
