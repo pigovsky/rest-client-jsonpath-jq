@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd "$(git rev-parse --show-toplevel)"
+if [[ $(git diff --cached manifest.json | grep \"version\") ]]; then
+	echo version was updated
+else 
+	echo have you forgotten to update the version?
+	exit 1
+fi
+
