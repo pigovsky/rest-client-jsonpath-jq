@@ -1,26 +1,10 @@
 
-let MainWindowState = {
+const MainWindowView = {
 	responseJsonEditor: null,
-	currentHistoricalRequest: 0,
 	init: function() {
 		var container = document.getElementById("responseJsonEditor");         
 		var options = {};
 		this.responseJsonEditor = new JSONEditor(container, options);
-	},
-	showHistoricalRequest: function() {
-		RequestDao.getRequest(this.currentHistoricalRequest, (request, newIndex) => {
-			this.currentHistoricalRequest = newIndex;
-			if (request != null) {
-				let keyValues={                 
-					"requestMethodAndUrl": request.methodAndUrl,
-					"requestHeaders": request.headers,
-					"requestBody": request.body
-				};         
-				Object.keys(keyValues).forEach( (key) => {                 
-					document.getElementById(key).value = keyValues[key];         
-				});  
-			}
-		});
 	},
 	showProgress: function() {
 		this.setResponseBody("Request in progress...");
@@ -37,6 +21,9 @@ let MainWindowState = {
 	getRequestMethodAndUrl: function() {
 		return this.getUiField("requestMethodAndUrl");
 	},
+	setRequestMethodAndUrl: function(text) {
+		this.setUiField("requestMethodAndUrl", text);
+	},
 	getResponseBody: function() {
 		return this.getUiField("responseBody");
 	},
@@ -49,20 +36,18 @@ let MainWindowState = {
 	getRequestBody: function() {
 		return this.getUiField("requestBody");
 	},
+	setRequestBody: function(text) {
+		this.setUiField("requestBody", text);
+	},
+	setRequestHeaders: function(text) {
+		this.setUiField("requestHeaders", text);
+	},
 	saveRequest: function() {
 		RequestDao.saveRequest({
 			methodAndUrl: this.getUiField("requestMethodAndUrl"),
 			headers: this.getUiField("requestHeaders"),
 			body: this.getRequestBody() 
 		});
-	},
-	historyUp: function() {
-		this.currentHistoricalRequest++;
-		this.showHistoricalRequest();
-	},
-	historyDown: function() {
-		this.currentHistoricalRequest--;
-		this.showHistoricalRequest();
 	},
 	updateJsonEditor: function() {	
 		let body = JSON.parse(this.getResponseBody());
@@ -78,6 +63,6 @@ let MainWindowState = {
 };
 
 module.exports = {
-	MainWindowState
+	MainWindowView
 };
 

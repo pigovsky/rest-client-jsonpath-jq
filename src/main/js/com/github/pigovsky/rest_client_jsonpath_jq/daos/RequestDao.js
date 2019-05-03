@@ -30,3 +30,7 @@ let RequestDao = {
 	}
 };
 
+module.exports = {
+	RequestDao
+};
+
