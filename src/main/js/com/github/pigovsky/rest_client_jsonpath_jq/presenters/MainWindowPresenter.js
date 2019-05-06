@@ -1,10 +1,17 @@
 const MainWindowPresenter = {
 	currentHistoricalRequest: 0,
-	sendRequest: () => {
-		MainWindowView.saveRequest();
+  getRequestMethodAndUrl: function() {
 		let methodAndUrl = MainWindowView.getRequestMethodAndUrl().split(/\s+/);
-		let method = methodAndUrl[0];
-		let url = methodAndUrl[1];
+		return {
+      method: methodAndUrl[0],
+		  url: methodAndUrl[1]
+    };
+  },
+	sendRequest: function() {
+		MainWindowView.saveRequest();
+		let methodAndUrl = this.getRequestMethodAndUrl();
+		let method = methodAndUrl.method;
+		let url = methodAndUrl.url;
 
 		HeaderFetcher.headers(url, (headers) => {
 			MainWindowView.showProgress();
@@ -33,6 +40,22 @@ const MainWindowPresenter = {
 	historyDown: function() {
 		this.currentHistoricalRequest--;
 		this.showHistoricalRequest();
+	},
+  saveAsMock: function() {
+    const responseJson = JSON.parse(MainWindowView.getResponseBody());
+		let methodAndUrl = this.getRequestMethodAndUrl();
+    FileUtils.saveFileToClient(MainWindowView.getRequestMethodAndUrl(), 
+    {	
+     "context": "URI Regexp Matching",
+		 "data": {
+       "method": methodAndUrl.method.toUpperCase(),
+       "uri-regexp": methodAndUrl.url.replace("?","\\?"),
+       "response": {
+         "status": 200,
+         "body": responseJson
+			 }
+		 }
+		});
 	}
 };
 
