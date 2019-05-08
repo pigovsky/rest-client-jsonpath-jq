@@ -44,12 +44,13 @@ const MainWindowPresenter = {
   saveAsMock: function() {
     const responseJson = JSON.parse(MainWindowView.getResponseBody());
 		let methodAndUrl = this.getRequestMethodAndUrl();
+    const path = methodAndUrl.url.match(/https?:\/\/[^\/]*(\/.*)/i)[1];
     FileUtils.saveFileToClient(MainWindowView.getRequestMethodAndUrl(), 
     {	
      "context": "URI Regexp Matching",
 		 "data": {
        "method": methodAndUrl.method.toUpperCase(),
-       "uri-regexp": methodAndUrl.url.replace("?","\\?"),
+       "uri-regexp": path.replace("?","\\?"),
        "response": {
          "status": 200,
          "body": responseJson

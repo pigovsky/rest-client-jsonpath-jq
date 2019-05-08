@@ -17,7 +17,7 @@ describe('MainWindowPresenter', function(){
       global.MainWindowView = mockito.replace(
 	"../main/js/com/github/pigovsky/rest_client_jsonpath_jq/views/MainWindowView.js"
 ).MainWindowView;
-      mockito.when(MainWindowView.getRequestMethodAndUrl()).thenReturn("get /api/something");
+      mockito.when(MainWindowView.getRequestMethodAndUrl()).thenReturn("get http://some.com:1234/api/something");
       MainWindowView.responseJsonEditor = mockito.object({set: () => {}});
 			MainWindowPresenter.sendRequest();
 			mockito.verify(MainWindowView.showProgress());
@@ -29,12 +29,12 @@ describe('MainWindowPresenter', function(){
 		it('should show a request from history', done => {
 			global.RequestDao = mockito.replace("../main/js/com/github/pigovsky/rest_client_jsonpath_jq/daos/RequestDao.js").RequestDao;
 			mockito.when(RequestDao.getRequest(0)).thenCallback({
-				"methodAndUrl": "get /api/old-request",
+				"methodAndUrl": "get https://oj.sw:4321/api/old-request",
 				"headers": '{"a": "b"}',
 				"body": ""
 			}, 0);
 			MainWindowPresenter.showHistoricalRequest();
-			mockito.verify(MainWindowView.setRequestMethodAndUrl("get /api/old-request"));
+			mockito.verify(MainWindowView.setRequestMethodAndUrl("get https://oj.sw:4321/api/old-request"));
 			mockito.verify(MainWindowView.setRequestHeaders('{"a": "b"}'));
 			mockito.verify(MainWindowView.setRequestBody(''));
 			done();
@@ -66,11 +66,11 @@ describe('MainWindowPresenter', function(){
       global.MainWindowView = mockito.replace(
 	"../main/js/com/github/pigovsky/rest_client_jsonpath_jq/views/MainWindowView.js"
 ).MainWindowView;
-      mockito.when(MainWindowView.getRequestMethodAndUrl()).thenReturn("get /api/something");
+      mockito.when(MainWindowView.getRequestMethodAndUrl()).thenReturn("get http://hej.sw:5432/api/something");
 			global.FileUtils = mockito.replace("../main/js/com/github/pigovsky/rest_client_jsonpath_jq/utils/FileUtils.js").FileUtils;
       mockito.when(MainWindowView.getResponseBody()).thenReturn('{"a": "b"}');
      MainWindowPresenter.saveAsMock(); 
-     mockito.verify(FileUtils.saveFileToClient("get /api/something", {
+     mockito.verify(FileUtils.saveFileToClient("get http://hej.sw:5432/api/something", {
      "context": "URI Regexp Matching",
 		 "data": {
        "method": "GET",
@@ -89,11 +89,11 @@ describe('MainWindowPresenter', function(){
       global.MainWindowView = mockito.replace(
 	"../main/js/com/github/pigovsky/rest_client_jsonpath_jq/views/MainWindowView.js"
 ).MainWindowView;
-      mockito.when(MainWindowView.getRequestMethodAndUrl()).thenReturn("put /api/something?submit=true");
+      mockito.when(MainWindowView.getRequestMethodAndUrl()).thenReturn("put http://dag.sw:7654/api/something?submit=true");
 			global.FileUtils = mockito.replace("../main/js/com/github/pigovsky/rest_client_jsonpath_jq/utils/FileUtils.js").FileUtils;
       mockito.when(MainWindowView.getResponseBody()).thenReturn('{"b": "c"}');
      MainWindowPresenter.saveAsMock(); 
-     mockito.verify(FileUtils.saveFileToClient("put /api/something?submit=true", {
+     mockito.verify(FileUtils.saveFileToClient("put http://dag.sw:7654/api/something?submit=true", {
      "context": "URI Regexp Matching",
 		 "data": {
        "method": "PUT",
