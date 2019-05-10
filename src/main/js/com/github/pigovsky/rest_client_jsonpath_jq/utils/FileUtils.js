@@ -1,6 +1,6 @@
 const FileUtils = {
   saveFileToClient: (filename, content) => {
-    // not implemented
+    throw "Not implemented";
   }
 }
 

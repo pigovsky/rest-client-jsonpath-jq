@@ -6,6 +6,7 @@
 	<script src="../../../../node_modules/jsoneditor/dist/jsoneditor.min.js"></script>
 	<script type="module" src="../../../../node_modules/jsonpath/jsonpath.min.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/utils/VersionUtils.js"></script>
+	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/utils/FileUtils.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/requesters/HttpRequester.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/model/HeaderFetcher.js"></script>
 	<script src="../../js/com/github/pigovsky/rest_client_jsonpath_jq/views/MainWindowView.js"></script>
@@ -31,6 +32,7 @@
 		<div class='child'>
 			<textarea id="responseBody"></textarea><br>
 			<a id="downloadResponse">Download</a>
+			<button id="saveAsMock">Save as mock</button>
 		</div>
 		<button id="updateJsonEditor">&rarr;</button>
 		<div id="responseJsonEditor" style="width: 900px; height: 2000px;"></div>

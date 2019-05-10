@@ -3,6 +3,7 @@ let eventHandlers = {
 		console.log("sending request");                         
 		MainWindowPresenter.sendRequest();  
 	},
+  "saveAsMock": () => { MainWindowPresenter.saveAsMock() },
 	"historyUp": () => { MainWindowPresenter.historyUp() },
 	"historyDown": () => { MainWindowPresenter.historyDown() },
 	"updateJsonEditor": () => { MainWindowView.updateJsonEditor(); },
