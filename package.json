@@ -14,7 +14,7 @@
   "main": "src",
   "repository": "pigovsky/rest-client-jsonpath-jq",
   "scripts": {
-    "test": "mocha src/test"
+    "test": "mocha --recursive src/test"
   },
   "dependencies": {
     "jsoneditor": "*",
